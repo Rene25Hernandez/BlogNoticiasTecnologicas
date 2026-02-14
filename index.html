@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TECHNEWS | Tu fuente confiable de innovación y análisis</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #0a0f2a;
+      --bg-card: #12183a;
+      --bg-section: #0d1233;
+      --blue: #1e6cff;
+      --blue-light: #4a90ff;
+      --text-primary: #ffffff;
+      --text-secondary: #a0b0d0;
+      --border-radius: 8px;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(to right, #0a0f2a, #0d1233);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--blue);
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: url('https://via.placeholder.com/100?text=TECH+LOGO') center/cover no-repeat;
+      box-shadow: 0 0 15px rgba(30, 100, 255, 0.5);
+    }
+
+    .site-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--blue-light);
+      margin-top: 0.3rem;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--bg-dark);
+      padding: 0.8rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.4rem 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    /* Section wrapper */
+    .section {
+      padding: 2rem 2rem;
+      background-color: var(--bg-section);
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--blue);
+    }
+
+    /* Noticias destacadas — 3 columnas */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-img {
+      height: 180px;
+      background: url('https://via.placeholder.com/600x180?text=Smartphone') center/cover no-repeat;
+    }
+
+    .card-content {
+      padding: 1.2rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: var(--blue-light);
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0.5rem 0;
+    }
+
+    /* Categoría de Noticias — 1 grande + 3 pequeñas */
+    .category-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .category-large {
+      grid-column: 1 / span 1;
+      grid-row: 1 / span 2;
+    }
+
+    .category-small {
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .category-small img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .category-small h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--blue);
+    }
+
+    .category-small p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Tabla comparativa */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .comparison-table th {
+      background: var(--blue);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .comparison-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-primary);
+    }
+
+    .comparison-table tr:nth-child(even) td {
+      background: rgba(30, 100, 255, 0.05);
+    }
+
+    .table-footer {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Tecnología en Acción — 2 cards horizontales */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .action-card {
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .action-img {
+      height: 160px;
+      background: url('https://via.placeholder.com/600x160?text=Robots') center/cover no-repeat;
+    }
+
+    .action-content {
+      padding: 1.2rem;
+    }
+
+    .action-content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: var(--blue);
+    }
+
+    /* Noticias Populares */
+    .popular-list {
+      list-style: none;
+    }
+
+    .popular-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .popular-icon {
+      font-size: 1.4rem;
+      color: var(--blue);
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .popular-text h4 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: var(--blue-light);
+    }
+
+    .popular-text p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Suscripción */
+    .subscribe {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .subscribe h2 {
+      color: var(--blue);
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+    }
+
+    .subscribe form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .subscribe input {
+      padding: 0.8rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .subscribe button {
+      padding: 0.8rem;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .subscribe button:hover {
+      background: #1557d9;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-dark);
+      padding: 2rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: url('https://via.placeholder.com/80?text=TECH+LOGO') center/cover no-repeat;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(30, 100, 255, 0.4);
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--blue);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo"></div>
+    <div>
+      <h1 class="site-title">TECHNEWS</h1>
+      <p class="tagline">Tu fuente confiable de innovación y análisis</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">IA & Machine Learning</a></li>
+      <li><a href="#">Smartphones</a></li>
+      <li><a href="#">Software</a></li>
+      <li><a href="#">Hardware</a></li>
+      <li><a href="#">Robótica</a></li>
+      <li><a href="#">Ciberseguridad</a></li>
+    </ul>
+  </nav>
+
+  <!-- Noticias destacadas -->
+  <section class="section">
+    <h2 class="section-title">Noticias destacadas</h2>
+    <div class="highlight-grid">
+      <article class="card">
+        <div class="card-img"></div>
+        <div class="card-content">
+          <h3>Smartphone Plegable: La Nueva Generación</h3>
+          <p>Pantalla de 8 pulgadas, batería de 48 horas y cámara de 200MP. El futuro de la movilidad.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background: url('https://via.placeholder.com/600x180?text=IA+3D') center/cover no-repeat;"></div>
+        <div class="card-content">
+          <h3>IA Generativa Crea Mundos 3D en Tiempo Real</h3>
+          <p>El nuevo modelo transforma texto en entornos virtuales navegables.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background: url('https://via.placeholder.com/600x180?text=5G') center/cover no-repeat;"></div>
+        <div class="card-content">
+          <h3>Tecnología 5G</h3>
+          <p>La tecnología 5G es la quinta generación de redes móviles, diseñada para ofrecer velocidades de conexión masivas, una latencia ultrarrápida (mínimo retraso) y la capacidad de conectar millones de dispositivos de forma simultánea.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Categoría de Noticias -->
+  <section class="section">
+    <h2 class="section-title">Categoría de Noticias</h2>
+    <div class="category-layout">
+      <article class="card category-large">
+        <div class="card-img" style="height: 240px; background: url('https://via.placeholder.com/600x240?text=IA') center/cover no-repeat;"></div>
+        <div class="card-content">
+          <h3>Inteligencia Artificial</h3>
+          <p>Descubre los últimos avances en modelos de lenguaje, visión computacional y ética de la IA.</p>
+        </div>
+      </article>
+      <article class="category-small">
+        <img src="https://via.placeholder.com/80x80?text=Smartphone" alt="Smartphone">
+        <div>
+          <h3>Smartphon</h3>
+          <p>Análisis detallados, comparativas y filtraciones de los dispositivos más esperados del mercado.</p>
+        </div>
+      </article>
+      <article class="category-small">
+        <img src="https://via.placeholder.com/80x80?text=Cloud" alt="Cloud">
+        <div>
+          <h3>Cloud Computing</h3>
+          <p>Infraestructura, servicios serverless y tendencias en computación en la nube para empresas.</p>
+        </div>
+      </article>
+      <article class="category-small">
+        <img src="https://via.placeholder.com/80x80?text=Ciber" alt="Ciberseguridad">
+        <div>
+          <h3>Cibersegurid</h3>
+          <p>Protege tus datos con las últimas noticias sobre amenazas, parches y mejores prácticas.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Comparativa -->
+  <section class="section">
+    <h2 class="section-title">Comparativa: Laptops Profesionales 2026</h2>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1rem;">Los mejores procesadores del momento</p>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Procesador</th>
+          <th>Tarjeta Gráfica</th>
+          <th>RAM</th>
+          <th>Almacenamiento</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HyperX Phantom</td>
+          <td>Intel Core i9-14900HX</td>
+          <td>NVIDIA RTX 4090</td>
+          <td>64 GB DDR5</td>
+          <td>512 GB NVMe + 2 TB NVMe SSD</td>
+          <td>$3,499</td>
+        </tr>
+        <tr>
+          <td>Acer Predator Helios</td>
+          <td>AMD Ryzen 9 7945HX</td>
+          <td>NVIDIA RTX 4080</td>
+          <td>32 GB DDR5</td>
+          <td>1 TB NVMe SSD</td>
+          <td>$2,799</td>
+        </tr>
+        <tr>
+          <td>ASUS ROG Zephyrus</td>
+          <td>AMD Ryzen 9 7940HS</td>
+          <td>NVIDIA RTX 4070</td>
+          <td>32 GB DDR5</td>
+          <td>1 TB NVMe SSD</td>
+          <td>$2,299</td>
+        </tr>
+        <tr>
+          <td>MSI Stealth 17 Studio</td>
+          <td>Intel Core i7-13700H</td>
+          <td>NVIDIA RTX 4060</td>
+          <td>16 GB DDR5</td>
+          <td>1 TB NVMe SSD</td>
+          <td>$1,899</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="table-footer">
+      Precios actualizados a febrero 2026. Incluyen impuestos y envío estándar.
+    </div>
+  </section>
+
+  <!-- Tecnología en Acción -->
+  <section class="section">
+    <h2 class="section-title">Tecnología en Acción</h2>
+    <div class="action-grid">
+      <article class="action-card">
+        <div class="action-img" style="background: url('https://via.placeholder.com/600x160?text=Robots+Obreros') center/cover no-repeat;"></div>
+        <div class="action-content">
+          <h3>Robots Autónomos en la Industria</h3>
+          <p>Robots Humanoides: El Futuro del Trabajo. Descubre cómo los robots humanoides están transformando industrias desde la manufactura hasta el cuidado de personas mayores. Entrevista exclusiva con líderes en robótica.</p>
+        </div>
+      </article>
+      <article class="action-card">
+        <div class="action-img" style="background: url('https://via.placeholder.com/600x160?text=VR') center/cover no-repeat;"></div>
+        <div class="action-content">
+          <h3>Realidad Virtual</h3>
+          <p>Metaverso, hardware inmersivo y aplicaciones de realidad mixta en diversos sectores.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Noticias Populares -->
+  <section class="section">
+    <h2 class="section-title">Noticias Populares</h2>
+    <ul class="popular-list">
+      <li class="popular-item">
+        <div class="popular-icon"><i class="fas fa-rocket"></i></div>
+        <div class="popular-text">
+          <h4>Starlink llega a 100 países</h4>
+          <p>12 feb 2026 • 22K visitas</p>
+        </div>
+      </li>
+      <li class="popular-item">
+        <div class="popular-icon"><i class="fas fa-microchip"></i></div>
+        <div class="popular-text">
+          <h4>Nuevos procesadores RAM</h4>
+          <p>10 feb 2026 • 18K visitas</p>
+        </div>
+      </li>
+      <li class="popular-item">
+        <div class="popular-icon"><i class="fas fa-heart"></i></div>
+        <div class="popular-text">
+          <h4>Implantes cerebrales curan parálisis</h4>
+          <p>8 feb 2026 • 15K visitas</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Suscripción -->
+  <section class="section">
+    <div class="subscribe">
+      <h2><i class="fas fa-envelope"></i> Suscríbete a Nuestro Boletín</h2>
+      <form>
+        <input type="text" placeholder="Tu nombre completo" required>
+        <input type="email" placeholder="Email address" required>
+        <button type="submit">Suscríbeme</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo"></div>
+    <p class="footer-desc">Tu fuente definitiva para noticias tecnológicas, análisis profundos y tendencias emergentes que están transformando nuestro mundo.</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="copyright">
+      Copyright © 2026 Website. All rights reserved.
+    </div>
+    <div class="footer-links">
+      <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
+
